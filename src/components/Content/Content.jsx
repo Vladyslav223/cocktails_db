@@ -11,13 +11,13 @@ class Content extends React.Component {
   render() {
     const { filters, filteredCat, data } = this.props;
     const resultFilteredCat = filteredCat.filteredCat.length && filteredCat.filteredCat;
-    const resultFilters = resultFilteredCat || data;
+    const resultFilters = resultFilteredCat || filters;
     return (
       <div className="content-wrap">
         {resultFilters.length && resultFilters.map((filter) => {
           const category = filter.strCategory;
           const photos = filter.items;
-          console.log('data', data);
+          console.log('photos', filter);
           return (!filteredCat || category) && (
           <div key={category} className="category">
             <h2 className="content__h2">{category}</h2>

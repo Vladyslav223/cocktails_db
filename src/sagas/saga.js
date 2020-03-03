@@ -20,7 +20,6 @@ export function* getApiCategories() {
   try {
     const filters = yield select(getFilters);
     const data = yield call(() => fetchCategories(filters));
-    // console.log('data', data);
     yield put(recievCategories(data));
   } catch (e) {
     console.log(e);
