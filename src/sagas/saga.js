@@ -1,7 +1,9 @@
 import {
   takeEvery, call, put, select,
 } from 'redux-saga/effects';
-import { recievCategories, recievFilters, ACTION_TYPES } from '../store/actions';
+import {
+  recievCategories, recievFilters, finishLoading, ACTION_TYPES,
+} from '../store/actions';
 
 import { fetchCategories, fetchFilters } from '../api';
 
@@ -26,7 +28,12 @@ export function* getApiCategories() {
   }
 }
 
+export function* finishLoadingCategories() {
+  yield put(finishLoading());
+}
+
 export default function* mySaga() {
   yield takeEvery(ACTION_TYPES.START_LOADING, getApiFilters);
   yield takeEvery(ACTION_TYPES.RECEIVE_FILTERS, getApiCategories);
+  yield takeEvery(ACTION_TYPES.RECEIVE_CATEGORIES, finishLoadingCategories);
 }

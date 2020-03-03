@@ -1,29 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import 'normalize.css';
-import Header from '../Header';
+import Header from '../Header/index';
 import Menu from '../Menu';
 import Content from '../Content';
 
 import './App.scss';
 
-// eslint-disable-next-line react/prefer-stateless-function
-class App extends React.Component {
-  componentDidMount() {
-    const { startLoading } = this.props;
-    startLoading();
-  }
+const App = (props) => {
+  useEffect(() => {
+    props.startLoading();
+  });
 
-  render() {
-    return (
-      <div className="App">
-        <Header />
-        <div className="flex-wrap">
-          <Menu />
-          <Content />
-        </div>
+  return (
+    <div className="App">
+      <Header />
+      <div className="flex-wrap">
+        <Menu />
+        <Content />
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default App;

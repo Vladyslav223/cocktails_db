@@ -6,6 +6,7 @@ const mapStateToProps = (state) => ({
   filters: state.filters,
   filteredCat: state.filteredCat,
   data: state.data,
+  finish: state.finish.isLoading,
 });
 
 export default connect(
