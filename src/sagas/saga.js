@@ -1,15 +1,21 @@
 import {
-  takeEvery, call, put, select,
+  takeEvery,
+  call,
+  put,
+  select,
 } from 'redux-saga/effects';
 import {
-  recievCategories, recievFilters, finishLoading, ACTION_TYPES,
+  recievCategories,
+  recievFilters,
+  finishLoading,
+  ACTION_TYPES,
 } from '../store/actions';
 
 import { fetchCategories, fetchFilters } from '../api';
 
-export const getFilters = (state) => state.filters;
+const getFilters = (state) => state.filters;
 
-export function* getApiFilters() {
+function* getApiFilters() {
   try {
     const filters = yield call(fetchFilters);
     yield put(recievFilters(filters));
@@ -18,7 +24,7 @@ export function* getApiFilters() {
   }
 }
 
-export function* getApiCategories() {
+function* getApiCategories() {
   try {
     const filters = yield select(getFilters);
     const data = yield call(() => fetchCategories(filters));
@@ -28,7 +34,7 @@ export function* getApiCategories() {
   }
 }
 
-export function* finishLoadingCategories() {
+function* finishLoadingCategories() {
   yield put(finishLoading());
 }
 

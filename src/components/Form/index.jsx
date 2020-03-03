@@ -1,6 +1,10 @@
+/* eslint-disable no-class-assign */
+/* eslint-disable quote-props */
+/* eslint-disable react/forbid-prop-types */
 import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import { reduxForm, Field } from 'redux-form';
+import PropTypes from 'prop-types';
 
 import './index.scss';
 
@@ -17,12 +21,12 @@ class Form extends Component {
 
       const submit = (values) => {
         const categoriesWithPhotos = [];
-        for (const key in values) {
+        Object.keys(values).forEach((key) => {
           if (values[key]) {
-            const filter = filters.find((filter) => filter.strCategory === key);
+            const filter = filters.find((newFilter) => newFilter.strCategory === key);
             categoriesWithPhotos.push({ strCategory: key, items: filter.items });
           }
-        }
+        });
 
         handleApply(categoriesWithPhotos);
       };
@@ -65,20 +69,26 @@ class Form extends Component {
       );
     }
 }
-// eslint-disable-next-line no-class-assign
+
 export default Form = reduxForm({
   form: 'group',
   initialValues: {
     'Ordinary Drink': true,
     'Milk / Float / Shake': true,
-    Cocktail: true,
+    'Cocktail': true,
     'Other/Unknown': true,
-    Cocoa: true,
-    Shot: true,
+    'Cocoa': true,
+    'Shot': true,
     'Coffee / Tea': true,
     'Homemade Liqueur': true,
     'Punch / Party Drink': true,
-    Beer: true,
+    'Beer': true,
     'Soft Drink / Soda': true,
   },
 })(Form);
+
+Form.propTypes = {
+  handleSubmit: PropTypes.any,
+  handleApply: PropTypes.func.isRequired,
+  filters: PropTypes.any.isRequired,
+};

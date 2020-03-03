@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
-// eslint-disable-next-line import/extensions
-import App from './App.jsx';
+import App from './App';
 import { startLoading } from '../../store/actions';
 
 const mapDispatchToProps = {
