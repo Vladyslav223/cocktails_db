@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
+
 import 'normalize.css';
 import Header from '../Header/index';
 import Menu from '../Menu';
@@ -23,3 +25,7 @@ const App = (props) => {
 };
 
 export default App;
+
+App.propTypes = {
+  startLoading: PropTypes.func.isRequired,
+};
